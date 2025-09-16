@@ -1,0 +1,40 @@
+
+/*
+Write a program to print the following pattern:
+*
+***
+*****
+*******
+*********
+*******
+*****
+***
+*
+*/
+
+#include <stdio.h>
+
+int main() {
+    int i, j;
+    int n = 5;  // number of rows in the upper half (max stars = 2*n - 1)
+
+    // Upper half including middle row
+    for (i = 1; i <= n; i++) {
+        // Print stars: 2*i - 1 stars
+        for (j = 1; j <= 2 * i - 1; j++) {
+            printf("*");
+        }
+        printf("\n");
+    }
+
+    // Lower half (excluding middle row)
+    for (i = n - 1; i >= 1; i--) {
+        // Print stars: 2*i - 1 stars
+        for (j = 1; j <= 2 * i - 1; j++) {
+            printf("*");
+        }
+        printf("\n");
+    }
+
+    return 0;
+}

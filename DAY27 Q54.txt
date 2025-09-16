@@ -1,0 +1,40 @@
+/*
+Write a program to print the following pattern:
+
+*
+
+***
+
+*****
+
+*******
+
+***
+
+*
+*/
+
+#include <stdio.h>
+
+int main() {
+    // Print 1 star with a blank line after
+    printf("*\n\n");
+
+    // Print 3 stars with a blank line after
+    printf("***\n\n");
+
+    // Print 5 stars with a blank line after
+    printf("*****\n\n");
+
+    // Print 7 stars with a blank line after
+    printf("*******\n\n");
+
+    // Print 3 stars with a blank line after
+    printf("***\n\n");
+
+    // Print 1 star
+    printf("*\n");
+
+    return 0;
+}
+
