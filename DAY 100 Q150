@@ -1,0 +1,49 @@
+#include <stdio.h>
+
+// Creating enum
+enum Grade { FAIL, PASS, EXCELLENT };
+
+// Creating structure
+struct Student {
+    char name[20];
+    int roll;
+    float marks;
+    enum Grade grade;
+};
+
+int main() {
+    struct Student s1;          // normal structure variable
+    struct Student *ptr = &s1;  // pointer to structure
+
+    // Modifying values using pointer and -> operator
+    printf("Enter name: ");
+    scanf("%s", ptr->name);
+
+    printf("Enter roll number: ");
+    scanf("%d", &ptr->roll);
+
+    printf("Enter marks: ");
+    scanf("%f", &ptr->marks);
+
+    // Assign grade using enum
+    if (ptr->marks >= 90)
+        ptr->grade = EXCELLENT;
+    else if (ptr->marks >= 40)
+        ptr->grade = PASS;
+    else
+        ptr->grade = FAIL;
+
+    // Displaying values using pointer
+    printf("\n--- Student Details ---\n");
+    printf("Name: %s\n", ptr->name);
+    printf("Roll: %d\n", ptr->roll);
+    printf("Marks: %.2f\n", ptr->marks);
+
+    // Printing enum meaning
+    printf("Grade: ");
+    if (ptr->grade == EXCELLENT) printf("EXCELLENT\n");
+    else if (ptr->grade == PASS) printf("PASS\n");
+    else printf("FAIL\n");
+
+    return 0;
+}
