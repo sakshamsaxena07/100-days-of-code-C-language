@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+int main() {
+    char str[1000];
+    int i = 0, lastSpace = -1;
+
+    // Read full name
+    fgets(str, sizeof(str), stdin);
+
+    // Find the last space (surname starts after it)
+    while (str[i] != '\0' && str[i] != '\n') {
+        if (str[i] == ' ')
+            lastSpace = i;
+        i++;
+    }
+
+    // Print initials except surname
+    i = 0;
+    while (i < lastSpace) {
+        if ((i == 0 && str[i] != ' ') || (str[i] == ' ' && str[i + 1] != ' ' && str[i + 1] != '\n'))
+            printf("%c.", str[i == 0 ? i : i + 1]);
+        i++;
+    }
+
+    // Print surname in full
+    if (lastSpace != -1) {
+        printf(" ");
+        i = lastSpace + 1;
+        while (str[i] != '\0' && str[i] != '\n') {
+            printf("%c", str[i]);
+            i++;
+        }
+    }
+
+    return 0;
+}

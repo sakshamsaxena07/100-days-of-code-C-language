@@ -1,0 +1,47 @@
+#include <stdio.h>
+
+int main() {
+    char str1[1000], str2[1000], concat[2000];
+    int len1 = 0, len2 = 0, i = 0, j = 0, k = 0, found = 0;
+
+    // Read both strings
+    fgets(str1, sizeof(str1), stdin);
+    fgets(str2, sizeof(str2), stdin);
+
+    // Find lengths without using strlen()
+    while(str1[len1] != '\0' && str1[len1] != '\n') len1++;
+    while(str2[len2] != '\0' && str2[len2] != '\n') len2++;
+
+    // If lengths differ, not rotation
+    if(len1 != len2) {
+        printf("Not rotation");
+        return 0;
+    }
+
+    // Concatenate str1 with itself in concat
+    for(i = 0; i < len1; i++)
+        concat[i] = str1[i];
+    for(j = 0; j < len1; j++)
+        concat[i + j] = str1[j];
+    concat[2 * len1] = '\0';
+
+    // Check if str2 exists inside concat (manual substring search)
+    for(i = 0; i <= 2 * len1 - len2; i++) {
+        found = 1;
+        for(j = 0; j < len2; j++) {
+            if(concat[i + j] != str2[j]) {
+                found = 0;
+                break;
+            }
+        }
+        if(found) break;
+    }
+
+    // Print result
+    if(found)
+        printf("Rotation");
+    else
+        printf("Not rotation");
+
+    return 0;
+}

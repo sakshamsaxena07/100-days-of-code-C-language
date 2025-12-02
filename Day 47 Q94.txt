@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+int main() {
+    char str[1000], longest[1000];
+    int i = 0, j = 0, maxLen = 0, currLen = 0, start = 0;
+
+    // Read full sentence
+    fgets(str, sizeof(str), stdin);
+
+    // Traverse the string
+    while (str[i] != '\0' && str[i] != '\n') {
+        if (str[i] != ' ') {
+            currLen++;
+        } else {
+            if (currLen > maxLen) {
+                maxLen = currLen;
+                start = i - currLen;
+            }
+            currLen = 0;
+        }
+        i++;
+    }
+
+    // Check for last word
+    if (currLen > maxLen) {
+        maxLen = currLen;
+        start = i - currLen;
+    }
+
+    // Copy longest word
+    for (i = 0; i < maxLen; i++) {
+        longest[i] = str[start + i];
+    }
+    longest[i] = '\0';
+
+    // Output
+    printf("%s", longest);
+
+    return 0;
+}

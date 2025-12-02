@@ -1,0 +1,44 @@
+#include <stdio.h>
+
+int main() {
+    char str1[1000], str2[1000];
+    int count1[26] = {0}, count2[26] = {0};
+    int i = 0;
+
+    // Read two strings
+    fgets(str1, sizeof(str1), stdin);
+    fgets(str2, sizeof(str2), stdin);
+
+    // Count frequency of lowercase alphabet in str1
+    i = 0;
+    while(str1[i] != '\0' && str1[i] != '\n') {
+        if(str1[i] >= 'a' && str1[i] <= 'z')
+            count1[str1[i] - 'a']++;
+        if(str1[i] >= 'A' && str1[i] <= 'Z') // handle uppercase too
+            count1[str1[i] - 'A']++;
+        i++;
+    }
+
+    // Count frequency of lowercase alphabet in str2
+    i = 0;
+    while(str2[i] != '\0' && str2[i] != '\n') {
+        if(str2[i] >= 'a' && str2[i] <= 'z')
+            count2[str2[i] - 'a']++;
+        if(str2[i] >= 'A' && str2[i] <= 'Z')
+            count2[str2[i] - 'A']++;
+        i++;
+    }
+
+    // Compare frequencies
+    for(int j = 0; j < 26; j++) {
+        if(count1[j] != count2[j]) {
+            printf("Not anagrams");
+            return 0;
+        }
+    }
+
+    // If all counts match
+    printf("Anagrams");
+
+    return 0;
+}
